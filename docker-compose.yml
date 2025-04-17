@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  #front end docker image build
+  yolo-app-frontend:
+    image: kipten/yolo-app-frontend:v1.0.0
+    build: ./client
+    container_name: yolo-app-frontend
+    restart: unless-stopped
+    ports:
+      - "3000: 3000"
+    depends_on:
+      - yolo-app-backend
+    networks:
+      - yolo-net
+  #backend docker image build
+  yolo-app-backend:
+    image: kipten/yolo-app-backend:v1.0.0
+    build: ./backend
+    container_name: yolo-app-backend
+    restart: unless-stopped
+    ports:
+      - "5000 : 5000"
+    depends_on:
+      - mongodb
+    networks:
+      - yolo-net
+  #db docker image build
+  mongodb:
+    image: mongo
+    container_name: yolo-app-db
+    ports:
+      - "27017: 27017"
+    networks:
+      - yolo-net
+    volumes:
+      - type: volume
+        source: app-mongo-data
+        target: /data/db
+
+  networks:
+    yolo-net:
+      driver: bridge
+
+  volumes:
+    app-mongo-data:
+      driver: local    
+
+    
+
+
+
+
