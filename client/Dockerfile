@@ -1,4 +1,5 @@
 FROM node:14-slim AS build
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -6,11 +7,13 @@ RUN npm install
 
 COPY . .
 
-#STAGE 2:
+FROM alpine:3.16
 
-FROM node:14-slim 
+# Install node and npm
+RUN apk add --no-cache nodejs npm
 
 WORKDIR /app
+
 COPY --from=build /usr/src/app /app
 
 EXPOSE 3000

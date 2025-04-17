@@ -3,19 +3,21 @@ version: '3.8'
 services:
   #front end docker image build
   yolo-app-frontend:
-    image: kipten/yolo-app-frontend:v1.0.0
+    image: kipten/yolo-app-frontend:v1.0.1
     build: ./client
     container_name: yolo-app-frontend
-    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    
     ports:
-      - "3000:3000"
+      - "7500:3000"
     depends_on:
       - yolo-app-backend
     networks:
       - yolo-net
   #backend docker image build
   yolo-app-backend:
-    image: kipten/yolo-app-backend:v1.0.0
+    #image: kipten/yolo-app-backend:v1.0.0
     build: ./backend
     container_name: yolo-app-backend
     restart: unless-stopped
