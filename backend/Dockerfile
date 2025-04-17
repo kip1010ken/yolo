@@ -16,5 +16,5 @@ WORKDIR /app
 
 COPY --from=build /usr/ken/app /app/
 
-EXPOSE 505050
+EXPOSE 5000
 CMD [ "node", "server.js" ]
