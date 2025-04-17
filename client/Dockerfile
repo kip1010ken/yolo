@@ -13,6 +13,6 @@ FROM node:14-slim
 WORKDIR /app
 COPY --from=build /usr/src/app /app
 
-EXPOSE 303030
+EXPOSE 3000
 
 CMD ["npm", "start"]
