@@ -17,7 +17,7 @@ services:
       - yolo-net
   #backend docker image build
   yolo-app-backend:
-    #image: kipten/yolo-app-backend:v1.0.0
+    image: kipten/yolo-app-backend:v1.0.1
     build: ./backend
     container_name: yolo-app-backend
     restart: unless-stopped
