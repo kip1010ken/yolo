@@ -6,11 +6,11 @@
 
  Running the command:
 
- docker compose up
+     docker compose up
 
  from the root directory will build and launch all required containers.
 
- Architecture
+ # Architecture
 
  The docker-compose.yml file defines:
 
