@@ -19,9 +19,9 @@
  > - yolo-app-backend -Node.js backend
  > - mongo - MongoDB database
 
-#### Named Volume: *app-mongo-data* - Ensures MongoDB data persists.
+#### Named Volume: *app-mongo-data* - <p>Ensures MongoDB data persists.</p>
 
-#### Custom network : *yolo-net*  - bridge network that allow the containers to communicate with each other
+#### Custom network : *yolo-net*  - <p>bridge network that allow the containers to communicate with each other</p>
 
 
 ### Frontend: *yolo-app-front-end* 
@@ -30,12 +30,12 @@ This  container that spins up the front end where users will interact with the s
 
 #### Dockerfile Directives 
 
-FROM - Specifies the base image used (Uses node:14-slim for building and alpine for serving)
-WORKDIR - set the working directory inside the container
-COPY - Copy files form the host to the container
-RUN - Execute commands like "npm install"
-EXPOSE - Show the port that the container listens on, in this case port 3000
-CMD - Defines the command to run when the container starts ["npm", "start"]
+> FROM - Specifies the base image used (Uses node:14-slim for building and alpine for serving)
+> WORKDIR - set the working directory inside the container
+> COPY - Copy files form the host to the container
+> RUN - Execute commands like "npm install"
+> EXPOSE - Show the port that the container listens on, in this case port 3000
+> CMD - Defines the command to run when the container starts ["npm", "start"]
 
 
 ### Backend: *yolo-app-backend*
@@ -44,12 +44,12 @@ This is the container that handles the backend logic  i.e connection to the data
 
 #### Dockerfile Directives 
 
-FROM - Sets the base images (node:14-slim for build and Alpine for runtime)
-WORKDIR - Define the working directory inside the container (/app in this case)
-COPY - Copies from the host to the container - first package*.json , then the rest of the code
-RUN - Installs dependencies
-EXPOSE - Document the port the app will listen on in this case port 5000
-CMD - ["npm start"]
+> FROM - Sets the base images (node:14-slim for build and Alpine for runtime)
+> WORKDIR - Define the working directory inside the container (/app in this case)
+> COPY - Copies from the host to the container - first package*.json , then the rest of the code
+> RUN - Installs dependencies
+> EXPOSE - Document the port the app will listen on in this case port 5000
+> CMD - ["npm start"]
 
 ### Database: *Mongo*
 
