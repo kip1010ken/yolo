@@ -1,6 +1,6 @@
- YOLO APP 
+                            YOLO APP 
 
- Overview
+ # Overview
 
  This project uses Docker Compose to containerize and orchestrate a full-stack YOLO application, including the frontend, backend, and MongoDB database.
 
