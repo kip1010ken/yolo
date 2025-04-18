@@ -14,7 +14,7 @@
 
  The docker-compose.yml file defines:
 
- #### Three Container Services :
+ ## Three Container Services :
  > - yolo-app-frontend - React frontend
  > - yolo-app-backend -Node.js backend
  > - mongo - MongoDB database
@@ -26,7 +26,7 @@ Please see the screen grab below of the running containers.
 
 ### Frontend:  *yolo-app-front-end* 
 
-This  container that spins up the front end where users will interact with the site. This container is built from a multi stage docker file to keep the final image lightweight. It is exposed on port 3000
+This  is the container that spins up the frontend where users will interact with the site. This container is built from a multi stage docker file to keep the final image lightweight. It is exposed on port 3000.
 
 #### Dockerfile Directives 
 
@@ -40,7 +40,7 @@ This  container that spins up the front end where users will interact with the s
 
 > EXPOSE - Show the port that the container listens on, in this case port 3000
 
-> CMD - Defines the command to run when the container starts ["npm", "start"]
+> CMD - Defines the command to run when the container starts in this case it is ["npm", "start"]
 
 
 ### Backend:  *yolo-app-backend*
@@ -65,7 +65,7 @@ This is the container that handles the backend logic  i.e connection to the data
 
 This service uses the official MongoDB image from Docker Hub. It persists data via the mounted volume app-mongo-data and listens on the default port 27017.
 
-### Networking & Volumes
+## Networking & Volumes
 
 > Network  yolo-net -bridge network for internal container communication
 
