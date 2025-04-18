@@ -31,10 +31,15 @@ This  container that spins up the front end where users will interact with the s
 #### Dockerfile Directives 
 
 > FROM - Specifies the base image used (Uses node:14-slim for building and alpine for serving)
+
 > WORKDIR - set the working directory inside the container
+
 > COPY - Copy files form the host to the container
+
 > RUN - Execute commands like "npm install"
+
 > EXPOSE - Show the port that the container listens on, in this case port 3000
+
 > CMD - Defines the command to run when the container starts ["npm", "start"]
 
 
@@ -45,10 +50,15 @@ This is the container that handles the backend logic  i.e connection to the data
 #### Dockerfile Directives 
 
 > FROM - Sets the base images (node:14-slim for build and Alpine for runtime)
+
 > WORKDIR - Define the working directory inside the container (/app in this case)
+
 > COPY - Copies from the host to the container - first package*.json , then the rest of the code
+
 > RUN - Installs dependencies
+
 > EXPOSE - Document the port the app will listen on in this case port 5000
+
 > CMD - ["npm start"]
 
 ### Database:  *Mongo*
@@ -60,4 +70,14 @@ This service uses the official MongoDB image from Docker Hub. It persists data v
 > Network  yolo-net -bridge network for internal container communication
 
 > Volume  app-mongo-data -ensure mongoDB data is not lost when containers are rebuilt.
+
+### Docker Hub
+
+The built images can alternatively be found on docker hub. Below is a screenshot for reference.
+
+![frontend](https://github.com/user-attachments/assets/515d2908-e89b-4980-b1af-d5ddcdc5a2f1)
+
+![backend](https://github.com/user-attachments/assets/619f39ae-0314-45f2-b096-bbb44716939b)
+
+
 
