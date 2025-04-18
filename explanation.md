@@ -14,21 +14,21 @@
 
  The docker-compose.yml file defines:
 
- ### Three Container Services :
+ #### Three Container Services :
  > - yolo-app-frontend - React frontend
  > - yolo-app-backend -Node.js backend
  > - mongo - MongoDB database
 
-### Named Volume: *app-mongo-data* -Ensure MongoDB data persists.
+#### Named Volume: *app-mongo-data* - Ensures MongoDB data persists.
 
-### Custom network : *yolo-net *  -bridge network that allow the containers to communicate with each other
+#### Custom network : *yolo-net*  - bridge network that allow the containers to communicate with each other
 
 
-## Frontend: yolo-app-front-end 
+### Frontend: yolo-app-front-end 
 
 This  container that spins up the front end where users will interact with the site. This container is built from a multi stage docker file to keep the final image lightweight. It is exposed on port 3000
 
-###Dockerfile Directives 
+#### Dockerfile Directives 
 
 FROM : Specifies the base image used (Uses node:14-slim for building and alpine for serving)
 WORKDIR: set the working directory inside the container
@@ -38,11 +38,11 @@ EXPOSE: Show the port that the container listens on, in this case port 3000
 CMD: Defines the command to run when the container starts ["npm", "start"]
 
 
-##Backend: yolo-app-backend
+### Backend: yolo-app-backend
 
 This is the container that handles the backend logic  i.e connection to the database and is running on port 5000. Similary to the yolo-app-frontend, this container utilizes a multi stage docker file for an optimized final image.
 
-###Dockerfile Directives 
+#### Dockerfile Directives 
 
 FROM: Sets the base images (node:14-slim for build and Alpine for runtime)
 WORKDIR : Define the working directory inside the container (/app in this case)
@@ -51,11 +51,11 @@ RUN : Installs dependencies
 EXPOSE : Document the port the app will listen on in this case port 5000
 CMD : ["npm start"]
 
-##Database: Mongo
+### Database: Mongo
 
 This service uses the official MongoDB image from Docker Hub. It persists data via the mounted volume app-mongo-data and listens on the default port 27017.
 
-##Networking & Volumes
+### Networking & Volumes
 
 Network : yolo-net -bridge network for internal container communication
 Volume: app-mongo-data -ensure mongoDB data is not lost when containers are rebuilt.
