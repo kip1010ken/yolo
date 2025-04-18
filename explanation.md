@@ -19,12 +19,11 @@
  > - yolo-app-backend -Node.js backend
  > - mongo - MongoDB database
 
-#### Named Volume: *app-mongo-data* - <p>Ensures MongoDB data persists.</p>
-
-#### Custom network : *yolo-net*  - <p>bridge network that allow the containers to communicate with each other</p>
+Please see the screen grab below of the running containers.
 
 
-### Frontend: *yolo-app-front-end* 
+
+### Frontend: #### *yolo-app-front-end* 
 
 This  container that spins up the front end where users will interact with the site. This container is built from a multi stage docker file to keep the final image lightweight. It is exposed on port 3000
 
@@ -38,7 +37,7 @@ This  container that spins up the front end where users will interact with the s
 > CMD - Defines the command to run when the container starts ["npm", "start"]
 
 
-### Backend: *yolo-app-backend*
+### Backend: #### *yolo-app-backend*
 
 This is the container that handles the backend logic  i.e connection to the database and is running on port 5000. Similary to the yolo-app-frontend, this container utilizes a multi stage docker file for an optimized final image.
 
@@ -51,7 +50,7 @@ This is the container that handles the backend logic  i.e connection to the data
 > EXPOSE - Document the port the app will listen on in this case port 5000
 > CMD - ["npm start"]
 
-### Database: *Mongo*
+### Database: #### *Mongo*
 
 This service uses the official MongoDB image from Docker Hub. It persists data via the mounted volume app-mongo-data and listens on the default port 27017.
 
