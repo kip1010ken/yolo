@@ -24,34 +24,34 @@
 #### Custom network : *yolo-net*  - bridge network that allow the containers to communicate with each other
 
 
-### Frontend: yolo-app-front-end 
+### Frontend: *yolo-app-front-end* 
 
 This  container that spins up the front end where users will interact with the site. This container is built from a multi stage docker file to keep the final image lightweight. It is exposed on port 3000
 
 #### Dockerfile Directives 
 
-FROM : Specifies the base image used (Uses node:14-slim for building and alpine for serving)
-WORKDIR: set the working directory inside the container
-COPY: Copy files form the host to the container
-RUN: Execute commands like "npm install"
-EXPOSE: Show the port that the container listens on, in this case port 3000
-CMD: Defines the command to run when the container starts ["npm", "start"]
+FROM - Specifies the base image used (Uses node:14-slim for building and alpine for serving)
+WORKDIR - set the working directory inside the container
+COPY - Copy files form the host to the container
+RUN - Execute commands like "npm install"
+EXPOSE - Show the port that the container listens on, in this case port 3000
+CMD - Defines the command to run when the container starts ["npm", "start"]
 
 
-### Backend: yolo-app-backend
+### Backend: *yolo-app-backend*
 
 This is the container that handles the backend logic  i.e connection to the database and is running on port 5000. Similary to the yolo-app-frontend, this container utilizes a multi stage docker file for an optimized final image.
 
 #### Dockerfile Directives 
 
-FROM: Sets the base images (node:14-slim for build and Alpine for runtime)
-WORKDIR : Define the working directory inside the container (/app in this case)
-COPY : Copies from the host to the container - first package*.json , then the rest of the code
-RUN : Installs dependencies
-EXPOSE : Document the port the app will listen on in this case port 5000
-CMD : ["npm start"]
+FROM - Sets the base images (node:14-slim for build and Alpine for runtime)
+WORKDIR - Define the working directory inside the container (/app in this case)
+COPY - Copies from the host to the container - first package*.json , then the rest of the code
+RUN - Installs dependencies
+EXPOSE - Document the port the app will listen on in this case port 5000
+CMD - ["npm start"]
 
-### Database: Mongo
+### Database: *Mongo*
 
 This service uses the official MongoDB image from Docker Hub. It persists data via the mounted volume app-mongo-data and listens on the default port 27017.
 
