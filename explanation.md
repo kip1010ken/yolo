@@ -79,5 +79,8 @@ The built images can alternatively be found on docker hub. Below is a screenshot
 
 ![backend](https://github.com/user-attachments/assets/619f39ae-0314-45f2-b096-bbb44716939b)
 
+#### Image Tag Naming Standards.
+
+From the screenshot above , we have utilized semantic versioning to tag our images. in this case since it was a minor change on the image we have tagged it v 1.0.1.
 
 
