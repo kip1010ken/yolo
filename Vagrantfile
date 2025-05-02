@@ -10,7 +10,8 @@ Vagrant.configure("2") do |config|
     end
   
     config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provision.yml"
+      ansible.playbook = "provision.yaml"
+      ansible.inventory_path = "inventory.yml"
     end
   end
   
