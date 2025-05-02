@@ -44,13 +44,17 @@
        name: yolo-net
        state: present
 
+   - name: Create Docker volume for MongoDB
+     community.docker.docker_volume:
+       name: mongo_db_data
 
-   - name: pull frontend docker image
+
+   - name: pull frontend  image
      docker_image:
        name: kipten/yolo-app-frontend:v1.0.1     
        source: pull
 
-   - name: Run front-end Docker container
+   - name: Run frontend container
      docker_container:
        name: yolo-app-frontend
        image: kipten/yolo-app-frontend:v1.0.1
@@ -60,7 +64,37 @@
          - name: yolo-net
        ports:
          - "3000:3000"
+       
  
 
+   - name: pull backend docker image
+     docker_image:
+       name:  kipten/yolo-app-backend:v1.0.1  
+       source: pull
 
-       
+   - name: Run backend  container
+     docker_container:
+       name: yolo-app-backend
+       image: kipten/yolo-app-backend:v1.0.1   
+       state: started
+       restart_policy: always
+       networks:
+         - name: yolo-net
+       ports:
+         - "5000:5000"
+
+
+  - name: Run MongoDB Docker container
+    docker_container:
+      name: mongodb
+      image: mongo:latest
+      state: started
+      restart_policy: always
+      ports:
+        - "27017:27017"
+      networks:
+        - name: yolo-net
+    
+      volumes:
+        - mongo_db_data:/data/db
+   
