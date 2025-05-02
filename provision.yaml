@@ -37,4 +37,30 @@
      service:
         name: docker
         state: started
-        enabled: yes      
+        enabled: yes     
+   
+   - name: create a docker network
+     docker_network:
+       name: yolo-net
+       state: present
+
+
+   - name: pull frontend docker image
+     docker_image:
+       name: kipten/yolo-app-frontend:v1.0.1     
+       source: pull
+
+   - name: Run front-end Docker container
+     docker_container:
+       name: yolo-app-frontend
+       image: kipten/yolo-app-frontend:v1.0.1
+       state: started
+       restart_policy: always
+       networks:
+         - name: yolo-net
+       ports:
+         - "3000:3000"
+ 
+
+
+       
