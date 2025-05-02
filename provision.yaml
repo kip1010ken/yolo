@@ -1,39 +1,40 @@
 ---
-name: Provision Docker and Containers on Ubuntu maachine
-become: yes
-hosts: all
+- name: Provision Docker and Containers on Ubuntu maachine
+  become: yes
+  hosts: all
 
-tasks:
- - name: update apt package index
-   ansible.builtin.apt:
-     update_cache: yes
- - name: install required packages
-   ansible.builtin.apt:
-     name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - software-properties-common
-      - gnupg
-      - lsb-release
-     state: present
+  tasks:
+   - name: update apt package index
+     ansible.builtin.apt:
+       update_cache: yes
 
-  - name: add docker oficial GPG keys
-    ansible.builtin.apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-      state: present
+   - name: install required packages
+     ansible.builtin.apt:
+       name:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        - gnupg
+        - lsb-release
+       state: present
 
-  - name: add docker repository 
-    ansible.builtin.apt_repository:
-      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-      state: present
-  - name: Install Docker
-      apt:
+   - name: add docker oficial GPG keys
+     ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+   - name: add docker repository 
+     ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+   - name: Install Docker
+     apt:
         name: docker-ce
         state: present
         update_cache: yes
-  - name: Ensure Docker is started
-      service:
+   - name: Ensure Docker is started
+     service:
         name: docker
         state: started
         enabled: yes      
