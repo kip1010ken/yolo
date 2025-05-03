@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for docker_network_and_volume
+- name: Create Docker network
+  docker_network:
+    name: "{{ docker_network_name }}"
+    state: present
+
+- name: Create Docker volume for MongoDB
+  community.docker.docker_volume:
+    name: "{{ mongo_volume }}"
+

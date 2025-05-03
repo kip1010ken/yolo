@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for mongodb
+container_name: mongodb
+image: "{{ mongodb_image }}"
+port: "{{ mongodb_port }}"
+volume: "{{ mongo_volume }}"
+

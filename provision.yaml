@@ -1,118 +1,126 @@
 ---
-- name: Provision Docker and Containers on Ubuntu maachine
+- name: Provisioning  and Containerization of Yolo app on Ubuntu machine
   become: yes
   hosts: all
 
-  tasks:
-   - name: update apt package index
-     ansible.builtin.apt:
-       update_cache: yes
+  roles:
+   - clone_repo
+   - docker
+   - docker_network_and_volume
+   - mongodb
+   - yolo_backend
+   - yolo_frontend
 
-   - name: install required packages
-     ansible.builtin.apt:
-       name:
-        - apt-transport-https
-        - ca-certificates
-        - curl
-        - software-properties-common
-        - gnupg
-        - lsb-release
-       state: present
+  # tasks:
+  #  - name: update apt package index
+  #    ansible.builtin.apt:
+  #      update_cache: yes
 
-   - name: add docker oficial GPG keys
-     ansible.builtin.apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
+  #  - name: install required packages
+  #    ansible.builtin.apt:
+  #      name:
+  #       - apt-transport-https
+  #       - ca-certificates
+  #       - curl
+  #       - software-properties-common
+  #       - gnupg
+  #       - lsb-release
+  #      state: present
 
-   - name: add docker repository 
-     ansible.builtin.apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-        state: present
-   - name: Install Docker
-     apt:
-        name: docker-ce
-        state: present
-        update_cache: yes
-   - name: Ensure Docker is started
-     service:
-        name: docker
-        state: started
-        enabled: yes     
-   - name: Ensure Docker Compose plugin is installed (for Docker CLI v2+)
-     stat:
-       path: /usr/libexec/docker/cli-plugins/docker-compose
-     register: compose_plugin
+  #  - name: add docker oficial GPG keys
+  #    ansible.builtin.apt_key:
+  #       url: https://download.docker.com/linux/ubuntu/gpg
+  #       state: present
 
-   - name: Install Docker Compose plugin if not present
-     get_url:
-      url: https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-linux-x86_64
-      dest: /usr/libexec/docker/cli-plugins/docker-compose
-      mode: '0755'
-     when: not compose_plugin.stat.exists
+  #  - name: add docker repository 
+  #    ansible.builtin.apt_repository:
+  #       repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+  #       state: present
+  #  - name: Install Docker
+  #    apt:
+  #       name: docker-ce
+  #       state: present
+  #       update_cache: yes
+  #  - name: Ensure Docker is started
+  #    service:
+  #       name: docker
+  #       state: started
+  #       enabled: yes     
+  #  - name: Ensure Docker Compose plugin is installed (for Docker CLI v2+)
+  #    stat:
+  #      path: /usr/libexec/docker/cli-plugins/docker-compose
+  #    register: compose_plugin
+
+  #  - name: Install Docker Compose plugin if not present
+  #    get_url:
+  #     url: https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-linux-x86_64
+  #     dest: /usr/libexec/docker/cli-plugins/docker-compose
+  #     mode: '0755'
+  #    when: not compose_plugin.stat.exists
   
    
-   - name: create a docker network
-     docker_network:
-       name: yolo-net
-       state: present
+  #  - name: create a docker network
+  #    docker_network:
+  #      name: yolo-net
+  #      state: present
 
-   - name: Create Docker volume for MongoDB
-     community.docker.docker_volume:
-       name: mongo_db_data
+  #  - name: Create Docker volume for MongoDB
+  #    community.docker.docker_volume:
+  #      name: mongo_db_data
 
-   - name: Clone Git repository
-     git: https://github.com/kip1010ken/yolo
-       repo:
-       dest: /opt/yolo-app
-       version: master
-       update: yes
+  #  - name: Clone Git repository
+  #    git: https://github.com/kip1010ken/yolo
+  #      repo:
+  #      dest: /opt/yolo-app
+  #      version: master
+  #      update: yes
 
-   - name: pull frontend  image
-     docker_image:
-       name: kipten/yolo-app-frontend:v1.0.1     
-       source: pull
+  #  - name: pull frontend  image
+  #    docker_image:
+  #      name: kipten/yolo-app-frontend:v1.0.1     
+  #      source: pull
 
-   - name: Run frontend container
-     docker_container:
-       name: yolo-app-frontend
-       image: kipten/yolo-app-frontend:v1.0.1
-       state: started
-       restart_policy: always
-       networks:
-         - name: yolo-net
-       ports:
-         - "3000:3000"
+  #  - name: Run frontend container
+  #    docker_container:
+  #      name: yolo-app-frontend
+  #      image: kipten/yolo-app-frontend:v1.0.1
+  #      state: started
+  #      restart_policy: always
+  #      networks:
+  #        - name: yolo-net
+  #      ports:
+  #        - "3000:3000"
        
  
 
-   - name: pull backend docker image
-     docker_image:
-       name:  kipten/yolo-app-backend:v1.0.1  
-       source: pull
+  #  - name: pull backend docker image
+  #    docker_image:
+  #      name:  kipten/yolo-app-backend:v1.0.1  
+  #      source: pull
 
-   - name: Run backend  container
-     docker_container:
-       name: yolo-app-backend
-       image: kipten/yolo-app-backend:v1.0.1   
-       state: started
-       restart_policy: always
-       networks:
-         - name: yolo-net
-       ports:
-         - "5000:5000"
+  #  - name: Run backend  container
+  #    docker_container:
+  #      name: yolo-app-backend
+  #      image: kipten/yolo-app-backend:v1.0.1   
+  #      state: started
+  #      restart_policy: always
+  #      networks:
+  #        - name: yolo-net
+  #      ports:
+  #        - "5000:5000"
 
 
-   - name: Run MongoDB Docker container
-     docker_container:
-       name: mongodb
-       image: mongo:latest
-       state: started
-       restart_policy: always
-       ports:
-         - "27017:27017"
-       networks:
-         - name: yolo-net
+  #  - name: Run MongoDB Docker container
+  #    docker_container:
+  #      name: mongodb
+  #      image: mongo:latest
+  #      state: started
+  #      restart_policy: always
+  #      ports:
+  #        - "27017:27017"
+  #      networks:
+  #        - name: yolo-net
     
-       volumes:
-         - mongo_db_data:/data/db
+  #      volumes:
+  #        - mongo_db_data:/data/db
    
