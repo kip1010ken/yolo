@@ -1,0 +1,15 @@
+docker_network_name: yolo-net
+mongo_volume: mongo_db_data
+
+frontend_image: kipten/yolo-app-frontend:v1.0.1
+frontend_port: "3000"
+
+backend_image: kipten/yolo-app-backend:v1.0.1
+backend_port: "5000"
+
+mongodb_image: mongo:latest
+mongodb_port: "27017"
+
+repo_url: https://github.com/kip1010ken/yolo
+repo_dest: /opt/yolo-app
+repo_branch: master
