@@ -31,11 +31,11 @@ This project provisions a local Ubuntu virtual machine using **Vagrant**, then u
 
 ## 🚀 Getting Started
 
-1. Start the VM and run the provisioning
+### 1. Start the VM and run the provisioning
 
-   vagrant up
+       vagrant up
 
-Vagrant will:
+ Vagrant will:
 
 Spin up an Ubuntu virtual machine.
 
@@ -43,33 +43,34 @@ Run the Ansible provision.yml playbook automatically.
 
 Deploy all containers using defined roles.
 
-2. Access the app
-Frontend: http://localhost:3000
+### 2. Access the app
 
-Backend API: http://localhost:5000
+- Frontend: http://localhost:3000
 
-MongoDB: Exposed on port 27017 
+- Backend API: http://localhost:5000
 
-3. Running Specific Parts (with Tags)
+-  MongoDB: Exposed on port 27017 
+
+### 3. Running Specific Parts (with Tags)
 
 You can target parts of the playbook using Ansible tags:
 
-   vagrant provision --provision-with ansible -- --tags "frontend"
+     vagrant provision --provision-with ansible -- --tags "frontend"
 
 ⚙️ Configuration
 
 Variables are centralized in group_vars/all.yml:
 
-   frontend_image: kipten/yolo-app-frontend:v1.0.1
-   backend_image: kipten/yolo-app-backend:v1.0.1
-   mongodb_image: mongo:latest
+    frontend_image: kipten/yolo-app-frontend:v1.0.1
+    backend_image: kipten/yolo-app-backend:v1.0.1
+    mongodb_image: mongo:latest
 
-   docker_network_name: yolo-net
-   mongo_volume: mongo_db_data
+    docker_network_name: yolo-net
+    mongo_volume: mongo_db_data
 
-   repo_url: https://github.com/kip1010ken/yolo
-   repo_dest: /opt/yolo-app
-   repo_branch: master
+    repo_url: https://github.com/kip1010ken/yolo
+    repo_dest: /opt/yolo-app
+    repo_branch: master
 
 Update versions, ports, or the repo path as needed.
 
