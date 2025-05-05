@@ -8,3 +8,5 @@
     dest: "{{ repo_dest }}"
     version: "{{ repo_branch }}"
     update: yes
+  tags:
+   - app

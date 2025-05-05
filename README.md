@@ -78,7 +78,7 @@ Update versions, ports, or the repo path as needed.
 ### 📁 Project Structure
 
 
-    │├── README.md
+    ├── README.md
     ├── Vagrantfile
     ├── ansible.cfg
     ├── inventory.yaml
