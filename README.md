@@ -57,7 +57,7 @@ You can target parts of the playbook using Ansible tags:
 
      vagrant provision --provision-with ansible -- --tags "frontend"
 
-⚙️ Configuration
+⚙️ Variables
 
 Variables are centralized in group_vars/all.yml:
 
