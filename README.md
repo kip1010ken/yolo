@@ -29,7 +29,7 @@ This project provisions a local Ubuntu virtual machine using **Vagrant**, then u
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Start the VM and run the provisioning
 
@@ -75,7 +75,18 @@ Variables are centralized in group_vars/all.yml:
 Update versions, ports, or the repo path as needed.
 
 
-📁 Project Structure
+### 📁 Project Structure
 
 
-│   
+    │├── README.md
+    ├── Vagrantfile
+    ├── ansible.cfg
+    ├── inventory.yaml
+    ├── provision.yaml
+    ├── roles
+    │   ├── clone_repo
+    │   ├── docker
+    │   ├── docker_network_and_volume
+    │   ├── mongodb
+    │   ├── yolo_backend
+    │   └── yolo_frontend
