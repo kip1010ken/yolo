@@ -1,3 +1,74 @@
+
+ # 🐳 YOLO App - GKE Deployment
+ 
+This guide explains how to deploy the YOLO application stack to a **Google Kubernetes Engine (GKE)** cluster. The app consists of:
+
+- A **MongoDB** database (with persistent storage)
+- A **Backend API**
+- A **Frontend UI**
+
+The application is exposed to the internet via a Kubernetes `LoadBalancer` service, accessible at:
+
+🌐 **http://35.232.135.122**
+
+---
+
+## 📦 Prerequisites
+
+Before you begin, make sure you have:
+
+- A Google Cloud account
+- `gcloud` CLI installed and authenticated
+- `kubectl` installed
+- Docker installed (if building and pushing images)
+
+---
+
+### 📁 Project Structure
+
+
+
+├── manifests/
+│   ├── db-deployment.yaml
+│   ├── db-service.yaml
+│   └── db-volume.yaml 
+│   ├── backend-deployment.yaml
+│   ├── backend-service.yaml
+│   ├── frontend-deployment.yaml
+│   └── frontend-service.yaml
+│
+├── yolo-app-backend/           
+├── yolo-app-frontend/          
+└── README.md
+
+### 🚀 Deploy the App
+
+1. Create MongoDB with Persistent Volume
+
+       kubectl apply -f db-volume.yaml 
+       kubectl apply -f manifests/db-deployment.yaml
+       kubectl apply -f manifests/mongo-service.yaml
+
+2. Deploy the Yolo App Backend 
+
+       kubectl apply -f manifestss/backend-deployment.yaml
+       kubectl apply -f manifestss/backend-service.yaml
+
+3. Deploy the Yolo App  Frontend
+
+       kubectl apply -f k8s/frontend-deployment.yaml
+       kubectl apply -f k8s/frontend-service.yaml
+
+🌐 Accessing the App
+  
+  Once the frontend service is deployed, GKE will provision a LoadBalancer with an external IP.
+
+📍 Access the frontend at:
+
+   http://35.232.135.122
+  
+ 
+ 
  # 🐳 YOLO App Provisioning with Ansible & Vagrant
 
 This project provisions a local Ubuntu virtual machine using **Vagrant**, then uses **Ansible** to deploy the YOLO web application in Docker containers. The app stack includes:
