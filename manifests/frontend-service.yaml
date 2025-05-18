@@ -1,11 +1,11 @@
-kubernetes loadbalancer apiVersion: v1
+apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: yolo-app-frontend-svc
 spec:
   selector:
-    app: myapp
-  type: loadbalancer  
+    app: yolo-app-frontend
+  type: LoadBalancer  
   ports:
   - port: 80
     targetPort: yolo-app-frontend-port
