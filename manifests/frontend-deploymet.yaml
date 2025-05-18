@@ -1,0 +1,23 @@
+kubernetes apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo-app-frontend
+spec:
+  selector:
+    matchLabels:
+      app: yolo-app-frontend
+  template:
+    metadata:
+      labels:
+        app: yolo-app-frontend
+    spec:
+      containers:
+      - name: yolo-app-frontend
+        image: kipten/yolo-app-frontend:v1.0.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - name: yolo-app-frontend-port
+          containerPort: 3000
