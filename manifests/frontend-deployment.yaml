@@ -13,11 +13,11 @@ spec:
     spec:
       containers:
       - name: yolo-app-frontend
-        image: kipten/yolo-app-frontend:v1.0.1
+        image: kipten/yolo-app-frontend:v1.1.0
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - name: yolo-app-frontend-port
-          containerPort: 3000
+        - name: frontend-port
+          containerPort: 80

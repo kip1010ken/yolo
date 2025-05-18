@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: yolo-mongo-db
+  name: mongodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: yolo-mongo-db
+      app: mongodb
   template:
     metadata:
       labels:
-        app: yolo-mongo-db     
+        app: mongodb     
     spec:
       containers:
       - name: mongodb

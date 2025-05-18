@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: yolo-mongo-db
+    app: mongodb
   ports:
   - port: 27017
     targetPort: 27017
