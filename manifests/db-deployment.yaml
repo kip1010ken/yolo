@@ -6,7 +6,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: yolo
+      app: yolo-mongo-db
   template:
     metadata:
       labels:
