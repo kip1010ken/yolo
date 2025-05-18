@@ -28,18 +28,18 @@ Before you begin, make sure you have:
 
 
 
-├── manifests/
-│   ├── db-deployment.yaml
-│   ├── db-service.yaml
-│   └── db-volume.yaml 
-│   ├── backend-deployment.yaml
-│   ├── backend-service.yaml
-│   ├── frontend-deployment.yaml
-│   └── frontend-service.yaml
-│
-├── yolo-app-backend/           
-├── yolo-app-frontend/          
-└── README.md
+     ├── manifests/
+     │   ├── db-deployment.yaml
+     │   ├── db-service.yaml
+     │   └── db-volume.yaml 
+     │   ├── backend-deployment.yaml
+     │   ├── backend-service.yaml
+     │   ├── frontend-deployment.yaml
+     │   └── frontend-service.yaml
+     │
+     ├── yolo-app-backend/           
+     ├── yolo-app-frontend/          
+     └── README.md
 
 ### 🚀 Deploy the App
 
