@@ -65,7 +65,7 @@ Before you begin, make sure you have:
 
 📍 Access the product list  at:
 
- **http://34.60.121.142:5000/api/products**
+ **http://35.232.135.122/**
 
  ⚙️ Troubleshooting
 
