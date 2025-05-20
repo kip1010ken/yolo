@@ -59,15 +59,32 @@ Before you begin, make sure you have:
        kubectl apply -f k8s/frontend-deployment.yaml
        kubectl apply -f k8s/frontend-service.yaml
 
-🌐 Accessing the App
+🌐 Accessing the Added Products
   
-  Once the frontend service is deployed, GKE will provision a LoadBalancer with an external IP.
+  Once yo add a product on the frontent, you are able to access them by .
 
-📍 Access the frontend at:
+📍 Access the product list  at:
 
-   http://35.232.135.122
-  
- 
+ **http://34.60.121.142:5000/api/products**
+
+ ⚙️ Troubleshooting
+
+ If the pods fail to start please check the logs by running 
+
+    kubectl get pods
+
+    kubectl logs <pod>
+ To list all Deployents, run 
+
+    kubectl get deployment
+    
+  To list all services, run
+
+    kubectl get svc
+
+  To confirm if persistent volume is claimed, run
+
+     kubectl get pvc
  
  # 🐳 YOLO App Provisioning with Ansible & Vagrant
 
